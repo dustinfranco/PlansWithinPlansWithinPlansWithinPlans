@@ -100,7 +100,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
   nl = 864
   sl = LED_COUNT
  
-  p_layers = [  [(0,1)],
+  p_layers = [
 		[(0,62),(141,160)],	
 		[(62,91),(160,176)],
 		[(91,119),(176,190)],
@@ -108,7 +108,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
 	        [(0,1)]
              ]
   
-  l_layers = [  [(0,1)],
+  l_layers = [
 		[(202,274)],
 		[(275,307)],
 		[(308,338)],
@@ -116,7 +116,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
 	        [(0,1)] 
              ]
  
-  a_layers = [  [(0,1)],
+  a_layers = [
 		[(354,431),(533,555)],
 		[(432,466),(556,575)],
 		[(467,500),(576,591)],\
@@ -124,7 +124,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
 	        [(0,1)]
              ]
 
-  n_layers = [  [(0,1)],
+  n_layers = [
 		[(602,669)],\
 		[(670,733)],\
 		[(734,795)],\
@@ -132,7 +132,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
 	        [(0,1)]
              ]
 
-  s_layers = [  [(0,1)],
+  s_layers = [
 		[(865,910)],\
 		[(911,954)],\
 		[(955,995)],\
@@ -140,7 +140,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
 	        [(0,1)]
              ]
     
-  b_layers = [[(0,1)], [(1119,1130)]]
+  b_layers = [[(1119,1130)]]
   for x in range (0,55):
     b_layers.append([(1118-x,1119-x), (1130+x,1131+x)])
   b_layers.append([(1052,1063)])
@@ -242,21 +242,8 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
   except Exception as e:
     print(e)
 
-
-def theaterChase(strip, color, wait_ms=50, iterations=10):
-    """Movie theater light style chaser animation."""
-    for j in range(iterations):
-        for q in range(3):
-            for i in range(0, strip.numPixels(), 3):
-                strip.setPixelColor(i+q, color)
-            strip.show()
-            time.sleep(wait_ms/1000.0)
-            for i in range(0, strip.numPixels(), 3):
-                strip.setPixelColor(i+q, 0)
-
 def main():
     turn_off_all_leds()
-    time.sleep(5)
     # Main program logic follows:
     # Process arguments
     parser = argparse.ArgumentParser()
