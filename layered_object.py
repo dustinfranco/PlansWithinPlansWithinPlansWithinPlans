@@ -3,9 +3,10 @@ from neopixel import *
 from simple_led_functions import *
 class layered_object():
   layers = [[(0,1)]]
-  
+  strip = None
   def __init__(self, layers, strip):
     print("init")
+    self.strip = strip
     self.layers = layers
     #print(self.layers)
   def color_layers(self, input_colors):
@@ -13,7 +14,7 @@ class layered_object():
       select_color = input_colors[i]
       for layer_tuple in self.layers[i]:
 	#print("applying " + str(select_color) + " to " + str(layer_tuple))
-        set_leds_in_range(strip, layer_tuple, select_color)
+        set_leds_in_range(self.strip, layer_tuple, select_color)
   
 def create_sine_time(time_range, number_samples):
   x = np.arange(number_samples)

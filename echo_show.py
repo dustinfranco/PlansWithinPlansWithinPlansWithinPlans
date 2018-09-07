@@ -39,7 +39,7 @@ def layers_in_layers_animation(colors = [], sine_time = False, static_time = 0):
       "s" : layered_object(s_layers, strip),
       "b" : layered_object(b_layers, strip)
     }
-    colors = multi_color_echo()
+    colors = single_color_echo()
     x = 0.0
     back = True;
     sine_time_tracker = 0
@@ -64,7 +64,7 @@ def layers_in_layers_animation(colors = [], sine_time = False, static_time = 0):
 	     back_colors.append(blue)
     while(1):
       if(x < 0.9):
-        x = x + 0.2
+        x = x + 0.05
       else:
         x = 0.0
      	#colors.append(Color(randint(0,96), randint(0,96), randint(0,96)))      
