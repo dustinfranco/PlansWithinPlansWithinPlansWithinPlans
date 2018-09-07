@@ -19,3 +19,12 @@ def multi_color_echo(layers = 5, off_layers = 6):
     for m in range(0, off_layers):
       simple_color_preset.append(off)
   return simple_color_preset
+
+def single_color_echo(input_color = red, layers = 5, off_layers = 6):
+  simple_color_preset = []
+  for m in range(0, layers):
+    simple_color_preset.append(input_color)
+  for m in range(0, off_layers):
+    simple_color_preset.append(off)
+  return simple_color_preset
+
