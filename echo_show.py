@@ -17,6 +17,8 @@ from layered_object import *
 from simple_led_functions import *
 from hardware_configuration import *
 
+print(LED_COUNT)
+
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 strip.begin()
 
@@ -29,12 +31,12 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
     sine_time_series = create_sine_time((0,0.05),120)
     print("begin")
     letters = {
-      "p" : layered_object(p_layers),
-      "l" : layered_object(l_layers),
-      "a" : layered_object(a_layers),
-      "n" : layered_object(n_layers),
-      "s" : layered_object(s_layers),
-      "b" : layered_object(b_layers)
+      "p" : layered_object(p_layers, strip),
+      "l" : layered_object(l_layers, strip),
+      "a" : layered_object(a_layers, strip),
+      "n" : layered_object(n_layers, strip),
+      "s" : layered_object(s_layers, strip),
+      "b" : layered_object(b_layers, strip)
     }
     colors = multi_color_echo()
     x = 0.0
@@ -67,22 +69,22 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
      	#colors.append(Color(randint(0,96), randint(0,96), randint(0,96)))      
     	back_colors.append(back_colors[0])
     	del back_colors[0]
-            colors.append(colors[0])
+        colors.append(colors[0])
     	del colors[0]
-          for letter in letters:
-            if letter == "b":
-              #b_color = blend_colors(back_colors, x)
-              #letters[letter].color_layers(b_color)
-              pass
-    	else:
-    	  blended_colors = blend_colors(colors, x)
-        letters[letter].color_layers(blended_colors) 
+        for letter in letters:
+          if letter == "b":
+            #b_color = blend_colors(back_colors, x)
+            #letters[letter].color_layers(b_color)
+            pass
+    	  else:
+    	    blended_colors = blend_colors(colors, x)
+            letters[letter].color_layers(blended_colors) 
 
         #FLASHING BACK
         if(flashing_back):
           if(back):
             back = False
-    	      oldR = redR
+    	    oldR = redR
             oldB = blueR
             oldG = greenR
             redR = randint(0,1) * 255
@@ -92,10 +94,10 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
                 redR = randint(0,1) * 255
                 blueR = randint(0,1) * 255
                 greenR = randint(0,1) * 255
-            set_leds_in_range((1052,1185), Color(redR, blueR, greenR))
+            set_leds_in_range(strip, (1052,1185), Color(redR, blueR, greenR))
           else:
             back=True
-            set_leds_in_range((1052,1185), Color(0,0,0)) 
+            set_leds_in_range(strip, (1052,1185), Color(0,0,0)) 
         
         strip.show()
         sine_time_tracker +=1
@@ -109,7 +111,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
     print(e)
 
 def main():
-    turn_off_all_leds()
+    turn_off_all_leds(strip)
     # Main program logic follows:
     # Process arguments
     parser = argparse.ArgumentParser()
