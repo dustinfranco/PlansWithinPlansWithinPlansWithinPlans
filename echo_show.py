@@ -55,31 +55,31 @@ def layers_in_layers_animation(colors = [], sine_time = False, static_time = 0):
     for z in range (0,11):
       back_colors.append(green)
     for z in range (0,11):
-	     back_colors.append(off)
+       back_colors.append(off)
     for z in range (0,11):
-	     back_colors.append(red)
+       back_colors.append(red)
     for z in range (0,11):
-	     back_colors.append(off)
+       back_colors.append(off)
     for z in range (0,11):
-	     back_colors.append(blue)
+       back_colors.append(blue)
     while(1):
       if(x < 0.9):
         x = x + 0.05
       else:
         x = 0.0
-     	#colors.append(Color(randint(0,96), randint(0,96), randint(0,96)))      
-    	back_colors.append(back_colors[0])
-    	del back_colors[0]
-        colors.append(colors[0])
-    	del colors[0]
-        for letter in letters:
-          if letter == "b":
-            #b_color = blend_colors(back_colors, x)
-            #letters[letter].color_layers(b_color)
-            pass
-    	  else:
-    	    blended_colors = blend_colors(colors, x)
-            letters[letter].color_layers(blended_colors) 
+       #colors.append(Color(randint(0,96), randint(0,96), randint(0,96)))      
+      back_colors.append(back_colors[0])
+      del back_colors[0]
+      colors.append(colors[0])
+      del colors[0]
+      for letter in letters:
+        if letter == "b":
+          #b_color = blend_colors(back_colors, x)
+          #letters[letter].color_layers(b_color)
+          pass
+        else:
+          blended_colors = blend_colors(colors, x)
+          letters[letter].color_layers(blended_colors) 
 
         #FLASHING BACK
         if(flashing_back):
@@ -99,12 +99,13 @@ def layers_in_layers_animation(colors = [], sine_time = False, static_time = 0):
           else:
             back=True
             set_leds_in_range(strip, (1052,1185), Color(0,0,0)) 
-        
+          
         strip.show()
-        sine_time_tracker +=1
-        if(sine_time_tracker == len(sine_time_series)):
-          sine_time_tracker = 0
+        
         if not len(sine_time_series):
+          sine_time_tracker +=1
+          if(sine_time_tracker == len(sine_time_series)):
+            sine_time_tracker = 0
           time.sleep(static_time)
         else:
           time.sleep(sine_time_series[sine_time_tracker])
