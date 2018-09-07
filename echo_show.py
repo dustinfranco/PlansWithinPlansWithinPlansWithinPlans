@@ -26,7 +26,6 @@ strip.begin()
 
 # Define functions which animate LEDs in various ways.
 def layers_in_layers_animation(colors = [], wait_ms=50):
-  try:
     flashing_back = True
     sine_time_series = create_sine_time((0,0.05),120)
     print("begin")
@@ -84,7 +83,7 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
         if(flashing_back):
           if(back):
             back = False
-    	    oldR = redR
+    	      oldR = redR
             oldB = blueR
             oldG = greenR
             redR = randint(0,1) * 255
@@ -107,8 +106,6 @@ def layers_in_layers_animation(colors = [], wait_ms=50):
           time.sleep(static_time)
         else:
           time.sleep(sine_time_series[sine_time_tracker])
-  except Exception as e:
-    print(e)
 
 def main():
     turn_off_all_leds(strip)
@@ -126,12 +123,12 @@ def main():
         print('Use "-c" argument to clear LEDs on exit')
 
     try:
-        print("start")
+      print("start")
         
-	layers_in_layers_animation()
+	    layers_in_layers_animation()
     except KeyboardInterrupt:
-        if args.clear:
-            colorWipe(strip, Color(0,0,0), 10)
+      if args.clear:
+        colorWipe(strip, Color(0,0,0), 10)
 
 
 
